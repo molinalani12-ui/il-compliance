@@ -1,216 +1,165 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ShieldCheck, Truck, ArrowRight, Clock, BadgeCheck, SearchCheck, LifeBuoy, Car, Map, Receipt, ClipboardList, Scale, Phone, Mail, MapPin, CheckCircle2 } from "lucide-react";
-
-// Container utility
-const Container = ({ children }) => (
-  <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
-);
-
-// --- NAV ---
-const Nav = () => (
-  <header className="sticky top-0 z-50 backdrop-blur bg-blue-900 text-white border-b border-yellow-400">
-    <Container>
-      <div className="flex items-center justify-between py-3">
-        <a href="#home" className="flex items-center gap-2">
-          <ShieldCheck className="h-6 w-6 text-yellow-400" />
-          <span className="font-bold text-yellow-400">IL Compliance</span>
-        </a>
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <a href="#services" className="hover:text-yellow-300">Services</a>
-          <a href="#pricing" className="hover:text-yellow-300">Memberships</a>
-          <a href="#contact" className="hover:text-yellow-300">Contact</a>
-        </nav>
-        <a href="#contact"><Button size="sm" className="bg-yellow-400 text-blue-900 font-semibold hover:bg-yellow-300">Request a Quote</Button></a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Illinois Trucking Compliance | IL & FMCSA Services</title>
+  <meta name="description" content="Affordable Illinois & FMCSA compliance services for carriers and owner-operators: ILCC authority, IRP, IFTA, UCR, MCS-150, BOC-3, apportioned plates, new entrant support, and more." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23005AC1'/%3E%3Ctext x='50' y='60' font-size='50' text-anchor='middle' fill='white' font-family='Arial, sans-serif'%3EIL%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e9eefb;
+      --muted: #b8c3e0;
+      --brand: #4f7cff;
+      --brand-2: #7ad3ff;
+      --ok: #13c296;
+      --warn: #ffd166;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+    header { position: sticky; top: 0; background: #0b1220e8; backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,.06); z-index: 100; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .logo-badge { width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--brand-2), var(--brand)); display: grid; place-items: center; color: #000; font-weight: 900; }
+    .menu { display: flex; gap: 20px; align-items: center; }
+    .menu a { color: var(--muted); font-weight: 600; }
+    .cta { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #051028; padding: 10px 16px; border-radius: 999px; font-weight: 800; border: none; box-shadow: var(--shadow); }
+    .hero { padding: 64px 0 28px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    h1 { font-size: clamp(30px, 4vw, 48px); margin: 16px 0 12px; line-height: 1.1; }
+    .lead { font-size: 18px; color: var(--muted); }
+    .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    section { padding: 54px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .section-title { font-size: 28px; margin: 0 0 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 16px; }
+    .service { display: grid; gap: 8px; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; color: #051028; background: var(--warn); font-weight: 800; }
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 16px; }
+    .step { position: relative; padding: 18px; border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-2); color: #051028; font-weight: 900; }
+    .pricing { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 16px; }
+    .plan { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .price { font-size: 34px; font-weight: 900; margin: 6px 0 8px; }
+    details { background: #0f1729; border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 14px 16px; }
+    summary { cursor: pointer; font-weight: 700; }
+    form { display: grid; gap: 12px; }
+    input, select, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); color: var(--text); }
+    button { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border: none; border-radius: 999px; padding: 12px 20px; font-weight: 800; color: #051028; cursor: pointer; }
+    footer { padding: 30px 0 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); text-align:center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge">IL</div>
+        <span>Illinois Compliance</span>
       </div>
-    </Container>
-  </header>
-);
-
-// --- HERO ---
-const Hero = () => (
-  <section id="home" className="relative overflow-hidden bg-gradient-to-b from-blue-800 to-blue-600 text-white">
-    <Container>
-      <div className="grid lg:grid-cols-2 gap-10 py-20 items-center">
-        <div>
-          <Badge className="mb-3 bg-yellow-400 text-blue-900">Trucking Safety • IRP • IFTA • Permits</Badge>
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Compliance solutions that keep your fleet moving</h1>
-          <p className="mt-4 text-lg text-blue-100">IL Compliance provides expert guidance for DOT safety, IRP plates, IFTA filings, UCR, HUT/KYU, permits, and safety audit preparation — done right and on time.</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#pricing"><Button size="lg" className="bg-yellow-400 text-blue-900 hover:bg-yellow-300">See memberships</Button></a>
-            <a href="#services"><Button size="lg" variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-blue-900">Explore services</Button></a>
-          </div>
-          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-blue-100">
-            {[
-              {icon: <Clock className="h-4 w-4 text-yellow-400"/>, text: "Same-day filings available"},
-              {icon: <BadgeCheck className="h-4 w-4 text-yellow-400"/>, text: "FMCSA & IRP compliance guidance"},
-              {icon: <SearchCheck className="h-4 w-4 text-yellow-400"/>, text: "Audit-ready documentation"},
-              {icon: <LifeBuoy className="h-4 w-4 text-yellow-400"/>, text: "Hands-on support when you need it"},
-            ].map((item, i) => (
-              <li key={i} className="flex items-center gap-2">{item.icon}{item.text}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-3xl border border-yellow-300 bg-blue-700 shadow-lg p-6">
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              { title: "Safety Programs", desc: "Policies, DQ files, training, CSA monitoring", icon: <ShieldCheck className="h-5 w-5 text-yellow-400"/> },
-              { title: "IRP & Plates", desc: "New accounts, supplements, transfers", icon: <Car className="h-5 w-5 text-yellow-400"/> },
-              { title: "IFTA & Fuel Tax", desc: "Quarterly filing, audits, and support", icon: <Receipt className="h-5 w-5 text-yellow-400"/> },
-              { title: "Permits", desc: "UCR, KYU, NY HUT, NM WDT, OR W/M", icon: <Map className="h-5 w-5 text-yellow-400"/> },
-            ].map((s, i) => (
-              <Card key={i} className="bg-blue-800 border-blue-700">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-2 text-yellow-400">{s.icon}<CardTitle className="text-base text-white">{s.title}</CardTitle></div>
-                  <CardDescription className="text-blue-100">{s.desc}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-          <div className="mt-4 flex items-center justify-between rounded-2xl bg-blue-800 p-4 border border-yellow-400">
-            <div className="flex items-center gap-3">
-              <Truck className="h-5 w-5 text-yellow-400"/>
-              <p className="text-sm text-blue-100">Serving fleets of all sizes — from startups to 100+ units.</p>
-            </div>
-            <Badge variant="outline" className="text-yellow-400 border-yellow-400">Chicago • Nationwide</Badge>
-          </div>
-        </div>
-      </div>
-    </Container>
-  </section>
-);
-
-// --- SERVICES ---
-const Services = () => (
-  <section id="services" className="py-20 bg-blue-50 text-blue-900 border-t border-yellow-300">
-    <Container>
-      <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {[
-          { title: "Safety & Compliance", text: "Driver qualification files, policies, accident registers, and safety audits." },
-          { title: "IRP Registration", text: "Apportioned plates setup, supplements, transfers, and renewals." },
-          { title: "IFTA & Permits", text: "Quarterly filings, fuel reconciliation, UCR, KYU, NY HUT, and other state permits." },
-          { title: "New Entrant Audit Assistance", text: "We guide you step-by-step through FMCSA's New Entrant Audit process, ensuring all documentation is compliant and audit-ready." },
-          { title: "DataQ Support", text: "Challenge incorrect violations and inspection reports with professional DataQ submissions and documentation." },
-          { title: "Permit Assistance", text: "We help obtain KYU, NY HUT, NM WDT, OR W/M, oversize/overweight, and temporary permits quickly and accurately." },
-          { title: "Single IRP Filing", text: "Need a one-time IRP supplement or new plate? We handle single transactions fast and affordably." },
-          { title: "Safety Consultation", text: "Expert consulting for safety managers and fleet owners covering compliance gaps, accident prevention, and CSA improvement." },
-          { title: "Safety Manager Course", text: "Train your staff to manage DOT compliance in-house. Includes safety program fundamentals, DQ files, and audits." },
-          { title: "Mock Audit", text: "Full-scale mock DOT audit to identify gaps before your official review — includes corrective action guidance." },
-        ].map((svc, i) => (
-          <Card key={i} className="border-yellow-400 flex flex-col justify-between">
-            <CardHeader><CardTitle>{svc.title}</CardTitle></CardHeader>
-            <CardContent className="flex-1">{svc.text}</CardContent>
-            <div className="p-4 pt-0"><a href="#contact"><Button className="w-full bg-yellow-400 text-blue-900 hover:bg-yellow-300">Book Now</Button></a></div>
-          </Card>
-        ))}
-      </div>
-    </Container>
-  </section>
-);
-
-// --- PRICING ---
-const Pricing = () => (
-  <section id="pricing" className="py-20 bg-blue-100 text-blue-900 border-t border-yellow-300">
-    <Container>
-      <h2 className="text-3xl font-bold text-center mb-2">Membership Options</h2>
-      <p className="text-center text-blue-800/80 mb-10">Bundle services and save. Government filing fees are separate.</p>
-      <div className="grid md:grid-cols-3 gap-6">
-        {[
-          { name: "Starter", price: "$199", cadence: "/mo", highlight: false, features: ["Up to 5 power units", "DataQs disputes — violations and crashes", "Crash report requests", "Traffic citation assistance*", "New Entrant Safety Audit Assistance $600*", "Basic application and safety manual included", "UCR and MCS-150 updates", "Quarterly filings"], notes: ["*Attorney fees, fines, bonds, and court costs not included.", "*Fee valid for the company listed on the agreement and for online audits only."] },
-          { name: "Growth", price: "$449", cadence: "/mo", highlight: true, features: ["Up to 15 power units", "2 IRP supplements/mo", "Driver files & Clearinghouse", "Safety coaching & scorecards", "DataQs disputes — violations and crashes", "Crash report requests", "Traffic citation assistance*", "New Entrant Safety Audit Assistance $600*", "Basic application and safety manual included", "UCR and MCS-150 updates", "Quarterly filings"], notes: ["*Attorney fees, fines, bonds, and court costs not included.", "*Fee valid for the company listed on the agreement and for online audits only."] },
-          { name: "Fleet", price: "Custom", cadence: "", highlight: false, features: ["16+ power units", "Multi-state IRP & permits", "Audit prep & CSA reviews", "Dedicated account manager", "DataQs disputes — violations and crashes", "Crash report requests", "Traffic citation assistance*", "New Entrant Safety Audit Assistance $600*", "Basic application and safety manual included", "UCR and MCS-150 updates", "Quarterly filings"], notes: ["*Attorney fees, fines, bonds, and court costs not included.", "*Fee valid for the company listed on the agreement and for online audits only."] },
-        ].map((tier, i) => (
-          <Card key={i} className={`border ${tier.highlight ? 'border-yellow-400 shadow-xl' : 'border-blue-200'}`}>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-2xl">{tier.name}</CardTitle>
-                {tier.highlight && <Badge className="bg-yellow-400 text-blue-900">Most Popular</Badge>}
-              </div>
-              <CardDescription>Everything you need to stay compliant.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-extrabold">{tier.price}<span className="text-base font-normal text-blue-800/70">{tier.cadence}</span></div>
-              <ul className="mt-4 space-y-2 text-sm">
-                {tier.features.map((f, idx) => (
-                  <li key={idx} className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-yellow-400 mt-0.5"/>{f}</li>
-                ))}
-              </ul>
-              {tier.notes && (
-                <div className="mt-4 text-xs text-blue-800/80 border-t border-yellow-300 pt-2 space-y-1">
-                  {tier.notes.map((note, nidx) => <p key={nidx}>{note}</p>)}
-                </div>
-              )}
-              <a href="#contact"><Button className="mt-6 w-full bg-yellow-400 text-blue-900 hover:bg-yellow-300">Choose {tier.name}</Button></a>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <p className="text-center text-xs text-blue-800/70 mt-4">Sample pricing — we’ll tailor a plan to your fleet and states.</p>
-    </Container>
-  </section>
-);
-
-// --- CONTACT ---
-const Contact = () => (
-  <section id="contact" className="py-20 bg-blue-50 border-t border-yellow-300">
-    <Container>
-      <h2 className="text-3xl font-bold text-center mb-8">Contact Us</h2>
-      <div className="grid lg:grid-cols-2 gap-8">
-        <Card className="border-yellow-400">
-          <CardHeader><CardTitle>Send us a message</CardTitle></CardHeader>
-          <CardContent className="space-y-3">
-            <Input placeholder="Full name" />
-            <Input placeholder="Company name" />
-            <Input type="email" placeholder="Email" />
-            <Input type="tel" placeholder="Phone" />
-            <Textarea placeholder="How can we help you? (IRP setup, IFTA, Safety audits, etc.)" rows={5} />
-            <Button className="bg-yellow-400 text-blue-900 w-full hover:bg-yellow-300">Submit</Button>
-          </CardContent>
-        </Card>
-        <Card className="border-yellow-400">
-          <CardHeader><CardTitle>Get in touch</CardTitle></CardHeader>
-          <CardContent className="space-y-2 text-blue-900">
-            <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-yellow-400"/> (000) 000-0000</div>
-            <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-yellow-400"/> info@ilcompliance.com</div>
-            <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-yellow-400"/> Arlington Heights, IL</div>
-          </CardContent>
-        </Card>
-      </div>
-    </Container>
-  </section>
-);
-
-// --- FOOTER ---
-const Footer = () => (
-  <footer className="border-t border-yellow-400 bg-blue-900 text-blue-100">
-    <Container>
-      <div className="py-8 grid md:grid-cols-2 gap-4 items-center">
-        <p className="text-sm">© {new Date().getFullYear()} IL Compliance. All rights reserved.</p>
-        <div className="flex md:justify-end gap-6 text-sm">
-          <a href="#services" className="hover:text-yellow-300">Services</a>
-          <a href="#pricing" className="hover:text-yellow-300">Memberships</a>
-          <a href="#contact" className="hover:text-yellow-300">Contact</a>
-        </div>
-      </div>
-    </Container>
-  </footer>
-);
-
-// --- PAGE ---
-export default function ILComplianceSite() {
-  return (
-    <div className="min-h-screen bg-blue-50 text-blue-900">
-      <Nav />
-      <Hero />
-      <Services />
-      <Pricing />
-      <Contact />
-      <Footer />
+      <nav class="menu">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="cta">Get Started</a>
+      </nav>
     </div>
-  );
-}
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <h1>One place for Illinois trucking compliance</h1>
+          <p class="lead">We help carriers and owner-operators with ILCC authority, IRP apportioned plates, IFTA, UCR, MCS-150/BOC-3, new entrant audits, and ongoing safety support. Affordable, fast, and accurate.</p>
+          <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="cta" href="#contact">Start your setup</a>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <div class="card"><h3>Illinois focus</h3><p>ILCC Certificates, Secretary of State registration, apportioned plates, and more.</p></div>
+          <div class="card"><h3>FMCSA filings</h3><p>MCS-150 updates, BOC-3, UCR, new authority, Drug & Alcohol program guidance.</p></div>
+          <div class="card"><h3>Tax & reporting</h3><p>IFTA account setup/quarterly filing, mileage records, and audit-ready support.</p></div>
+          <div class="card"><h3>Safety & onboarding</h3><p>DQ files, safety manuals, and driver orientation materials.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Services</h2>
+        <div class="grid-4">
+          <div class="card service"><span class="pill">Illinois</span><h4>ILCC Authority</h4><p>Public Carrier Certificates, intrastate setup, insurance filings.</p></div>
+          <div class="card service"><span class="pill">Plates</span><h4>IRP Apportioned</h4><p>New accounts, plate transfers, and cab card management.</p></div>
+          <div class="card service"><span class="pill">Fuel Tax</span><h4>IFTA Setup & Filing</h4><p>Quarterly returns, worksheets, and audit support.</p></div>
+          <div class="card service"><span class="pill">FMCSA</span><h4>Authority & Updates</h4><p>MC/USDOT, BOC-3, MCS-150, UCR, and New Entrant audit prep.</p></div>
+          <div class="card service"><span class="pill">Safety</span><h4>DQ Files & Policies</h4><p>Drug & alcohol policy support, safety manuals, and driver onboarding.</p></div>
+          <div class="card service"><span class="pill">Permits</span><h4>State Programs</h4><p>IL SOS title/registration, ST-556, trip/oversize permits.</p></div>
+          <div class="card service"><span class="pill">Audits</span><h4>Compliance Check</h4><p>Readiness reviews and audit preparation.</p></div>
+          <div class="card service"><span class="pill">Advisory</span><h4>On-call Support</h4><p>Month-to-month compliance support.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <h2 class="section-title">How it works</h2>
+        <div class="steps">
+          <div class="step"><h3>1. Brief intake</h3><p>Tell us your fleet size and what you need (new authority, IRP add, IFTA filing, etc.).</p></div>
+          <div class="step"><h3>2. We file fast</h3><p>We prepare and submit your IL & FMCSA paperwork and track approvals.</p></div>
+          <div class="step"><h3>3. Stay compliant</h3><p>We hand you a simple checklist and reminders for renewals and audits.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-title">Simple pricing</h2>
+        <div class="pricing">
+          <div class="plan"><h3>Starter</h3><div class="price">$149</div><p>One-time single filing</p></div>
+          <div class="plan"><h3>Compliance Pack</h3><div class="price">$399</div><p>Any 3 filings + checklist</p></div>
+          <div class="plan"><h3>Monthly Support</h3><div class="price">$129/mo</div><p>Ongoing compliance and updates</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <details><summary>Is this only for Illinois carriers?</summary><p>We specialize in Illinois compliance and handle multi-state filings like IRP, IFTA, and UCR.</p></details>
+        <details><summary>How fast can you file?</summary><p>Most filings are completed same-day, processing times vary by state/federal systems.</p></details>
+        <details><summary>Can you help with New Entrant audits?</summary><p>Yes, we offer readiness reviews, mock audits, and file cleanup.</p></details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Get a quick quote</h2>
+        <p class="lead">Tell us what you need — most quotes go out the same day.</p>
+        <form action="https://formspree.io/f/manlegap" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="tel" name="phone" placeholder="Your Phone Number" />
+          <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+          <button type="submit">Request Quote</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Illinois Compliance. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
