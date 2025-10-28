@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Illinois Trucking Compliance | IL & FMCSA Services</title>
+  <meta name="description" content="Affordable Illinois & FMCSA compliance services for carriers and owner‑operators: ILCC authority, IRP, IFTA, UCR, MCS‑150, BOC‑3, apportioned plates, new entrant support, and more." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Illinois Trucking Compliance | IL & FMCSA Services" />
+  <meta property="og:description" content="ILCC authority, IRP, IFTA, UCR, MCS‑150, BOC‑3, apportioned plates, new entrant support, and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com" />
+  <meta property="og:image" content="/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23005AC1'/%3E%3Ctext x='50' y='60' font-size='50' text-anchor='middle' fill='white' font-family='Arial, sans-serif'%3EIL%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e9eefb;
+      --muted: #b8c3e0;
+      --brand: #4f7cff; /* primary */
+      --brand-2: #7ad3ff; /* accent */
+      --ok: #13c296;
+      --warn: #ffd166;
+      --danger: #ef476f;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; }
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(180deg, rgba(11,18,32,.95), rgba(11,18,32,.65));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; }
+    .logo-badge { width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, var(--brand-2), var(--brand)); display: grid; place-items: center; color: #000; font-weight: 900; }
+    .menu { display: flex; gap: 20px; align-items: center; }
+    .menu a { color: var(--muted); font-weight: 600; }
+    .cta { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #051028; padding: 10px 16px; border-radius: 999px; font-weight: 800; border: none; box-shadow: var(--shadow); }
+    .cta:hover { filter: brightness(1.08); cursor: pointer; }
+    .burger { display: none; background: none; border: 1px solid rgba(255,255,255,.15); padding: 8px 10px; border-radius: 10px; color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 64px 0 28px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; background: rgba(127, 180, 255, .12); border: 1px solid rgba(127, 180, 255, .25); color: var(--brand-2); padding: 8px 12px; border-radius: 999px; font-weight: 700; }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(19,194,150,.15); }
+    h1 { font-size: clamp(30px, 4vw, 48px); margin: 16px 0 12px; line-height: 1.1; }
+    .lead { font-size: 18px; color: var(--muted); }
+    .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    /* Sections */
+    section { padding: 54px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .section-title { font-size: 28px; margin: 0 0 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    /* Services */
+    .service { display: grid; gap: 8px; }
+    .service h4 { margin: 0; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; color: #051028; background: linear-gradient(135deg, var(--warn), #ffe8a6); font-weight: 800; }
+
+    /* Process */
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .step { position: relative; padding: 18px; border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 30% 30%, var(--brand-2), var(--brand)); color: #051028; font-weight: 900; }
+
+    /* Pricing */
+    .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .plan { background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    .price { font-size: 34px; font-weight: 900; margin: 6px 0 8px; }
+    .plan ul { margin: 0; padding-left: 18px; color: var(--muted); }
+
+    /* FAQ */
+    details { background: #0f1729; border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 14px 16px; }
+    summary { cursor: pointer; font-weight: 700; }
+    details + details { margin-top: 10px; }
+
+    /* Contact */
+    form { display: grid; gap: 12px; }
+    label { font-weight: 700; font-size: 14px; }
+    input, select, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.03); color: var(--text); }
+    input::placeholder, textarea::placeholder { color: #97a5c7; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .small { font-size: 12px; color: var(--muted); }
+
+    /* Footer */
+    footer { padding: 30px 0 60px; color: var(--muted); border-top: 1px solid rgba(255,255,255,.06); }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .hero .wrap { grid-template-columns: 1fr; }
+      .hero-cards { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .pricing { grid-template-columns: 1fr; }
+      .menu { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #0f1729; padding: 12px 16px; border-top: 1px solid rgba(255,255,255,.06); }
+      .menu.open { display: grid; }
+      .burger { display: inline-flex; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge">IL</div>
+        <span>Illinois Compliance</span>
+      </div>
+      <nav class="menu" id="menu">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="cta" style="justify-self:end">Get Started</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container wrap">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> IL & FMCSA Compliance—done right</span>
+          <h1>One place for Illinois trucking compliance</h1>
+          <p class="lead">We help carriers and owner‑operators with ILCC authority, IRP apportioned plates, IFTA, UCR, MCS‑150/BOC‑3, new entrant audits, and ongoing safety support. Affordable, fast, and accurate.</p>
+          <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="cta" href="#contact">Start your setup</a>
+            <a href="#services" style="font-weight:700">See everything we handle →</a>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <div class="card"><h3>Illinois focus</h3><p>ILCC Public Carrier Certificates, Secretary of State title/registration, apportioned plates, city permits, and more.</p></div>
+          <div class="card"><h3>FMCSA filings</h3><p>MCS‑150 updates, BOC‑3, UCR, new authority (MC/FF), Drug & Alcohol program guidance, new entrant support.</p></div>
+          <div class="card"><h3>Tax & reporting</h3><p>IFTA account setup/quarterly filing, mileage records, fuel receipts, and audit‑ready support.</p></div>
+          <div class="card"><h3>Safety & onboarding</h3><p>Driver qualification files, policies, orientation, and scorecards—built to pass roadside & audits.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Services</h2>
+        <div class="grid-4">
+          <div class="card service">
+            <span class="pill">Illinois</span>
+            <h4>ILCC Authority</h4>
+            <p>Public Carrier Certificate (property/household goods), intrastate setup, and guidance on insurance filings.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Plates</span>
+            <h4>IRP Apportioned</h4>
+            <p>New IRP accounts, supplements for adds/transfers, plate corrections, and cab card management.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Fuel tax</span>
+            <h4>IFTA Setup & Filing</h4>
+            <p>Account registration, quarterly returns, worksheets, and audit support.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">FMCSA</span>
+            <h4>Authority & Updates</h4>
+            <p>MC/USDOT, BOC‑3, MCS‑150 updates, UCR, New Entrant audit prep.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Safety</span>
+            <h4>DQ Files & Policies</h4>
+            <p>DQ file builds, drug & alcohol policy support, safety manuals, and onboarding checklists.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Permits</span>
+            <h4>State Programs</h4>
+            <p>IL SOS title/registration, ST‑556/UTT guidance, city permits, and trip/oversize referrals.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Audits</span>
+            <h4>Compliance Check</h4>
+            <p>Readiness reviews for roadside, insurance, and state/federal audits with action plans.</p>
+          </div>
+          <div class="card service">
+            <span class="pill">Advisory</span>
+            <h4>On‑call Support</h4>
+            <p>Month‑to‑month compliance support to keep you current and stress‑free.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <h2 class="section-title">How it works</h2>
+        <div class="steps">
+          <div class="step">
+            <h3>1. Brief intake</h3>
+            <p class="lead">Tell us your fleet size, lanes, and what you need (new authority, IRP add, IFTA filing, etc.).</p>
+          </div>
+          <div class="step">
+            <h3>2. We file fast</h3>
+            <p class="lead">We prepare and submit the right IL & FMCSA paperwork the first time, and track approvals.</p>
+          </div>
+          <div class="step">
+            <h3>3. Stay compliant</h3>
+            <p class="lead">We hand you a simple checklist and, if you want, stay on call for renewals and audits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-title">Simple pricing</h2>
+        <div class="pricing">
+          <div class="plan">
+            <h3>Starter</h3>
+            <div class="price">$149</div>
+            <p class="small">One‑time. Best for single task filings.</p>
+            <ul>
+              <li>Any one filing (e.g., MCS‑150, UCR, IFTA return)</li>
+              <li>Email support</li>
+              <li>2‑day turnaround</li>
+            </ul>
+          </div>
+          <div class="plan" style="outline: 2px solid rgba(122, 211, 255,.4)">
+            <h3>Compliance Pack</h3>
+            <div class="price">$399</div>
+            <p class="small">Bundle & save. Popular for new carrier setup.</p>
+            <ul>
+              <li>Any three filings (mix & match)</li>
+              <li>Priority handling</li>
+              <li>Checklist & reminders</li>
+            </ul>
+          </div>
+          <div class="plan">
+            <h3>Monthly Support</h3>
+            <div class="price">$129/mo</div>
+            <p class="small">We keep you current year‑round.</p>
+            <ul>
+              <li>Renewals & quarterly reminders</li>
+              <li>Up to 2 tasks/month</li>
+              <li>Driver file spot‑checks</li>
+            </ul>
+          </div>
+        </div>
+        <p class="small" style="margin-top:10px">* Government fees not included. Custom quotes available for fleets & complex filings.</p>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <details>
+          <summary>Is this only for Illinois carriers?</summary>
+          <p>We specialize in Illinois requirements and can also help with federal filings and multistate programs (IRP/IFTA, UCR, BOC‑3) for carriers operating beyond IL.</p>
+        </details>
+        <details>
+          <summary>How fast can you file?</summary>
+          <p>Many filings are prepared same‑day; state/federal processing times vary. We keep you updated at each step.</p>
+        </details>
+        <details>
+          <summary>Can you help with a New Entrant audit?</summary>
+          <p>Yes—intake review, document checklist, mock Q&A, and we’ll help you fix gaps before the audit.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Get a quick quote</h2>
+        <p class="lead">Tell us what you need—most quotes go out the same day.</p>
+        <!-- Formspree wired -->
+        <form id="quoteForm" action="https://formspree.io/f/manlegap" method="POST">
+          <!-- Honeypot -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@email.com" required />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="(555) 555‑5555" />
+            </div>
+            <div>
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" placeholder="Carrier/DBA" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="fleet">Fleet size</label>
+              <select id="fleet" name="fleet">
+                <option value="1">1</option>
+                <option value="2-5">2–5</option>
+                <option value="6-10">6–10</option>
+                <option value="11-20">11–20</option>
+                <option value="21+">21+</option>
+              </select>
+            </div>
+            <div>
+              <label for="servicesSelect">Services needed</label>
+              <select id="servicesSelect" name="services" multiple size="4">
+                <option>ILCC Authority</option>
+                <option>IRP (apportioned plates)</option>
+                <option>IFTA setup/filing</option>
+                <option>UCR</option>
+                <option>MCS‑150 Update</option>
+                <option>BOC‑3</option>
+                <option>DQ Files / Safety</option>
+                <option>New Entrant Audit Prep</option>
+              </select>
+              <p class="small">Hold Ctrl/⌘ to select more than one.</p>
+            </div>
+          </div>
+          <label for="message">Tell us a bit more</label>
+          <textarea id="message" name="message" rows="5" placeholder="Example: Need IRP add for 2 trucks, IFTA Q3 filing, and MCS‑150 update." required></textarea>
+
+          <!-- Optional Formspree helpers -->
+          <input type="hidden" name="_subject" value="New IL Compliance Quote" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_webhook" value="" />
+
+          <button class="cta" type="submit">Request quote</button>
+          <p id="formNote" class="small"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:grid; gap:6px">
+        <strong>Illinois Compliance</strong>
+        <span class="small">Helping carriers stay legal and stress‑free in Illinois & beyond.</span>
+        <span class="small">© <span id="year"></span> Illinois Compliance. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger?.addEventListener('click', () => menu.classList.toggle('open'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Basic client-side validation & UX for Formspree
+    const form = document.getElementById('quoteForm');
+    const note = document.getElementById('formNote');
+    form?.addEventListener('submit', async (e) => {
+      // Let the normal POST happen, but show a quick note
+      note.textContent = 'Submitting…';
+      setTimeout(() => { note.textContent = 'Thank you! If you do not see a success page, we\'ll still receive your request.' }, 2000);
+    });
+  </script>
+</body>
+</html>
